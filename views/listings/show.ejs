@@ -82,10 +82,11 @@ const listing = <%- JSON.stringify(listings) %>;
       <p class="card-text"><%=review.comment%></p>
      
     </div>
+    <% if(currentUser && currentUser._id.equals(review.author._id)) { %>
     <form class="mb-2" method="POST" action="/listings/<%=listings._id%>/reviews/<%=review.id%>?_method=DELETE" >
       <button class="btn btn-sm btn-dark">Delete</button>
     </form>
-     
+     <% } %>
     </div>
   <%}%>
   </div>
