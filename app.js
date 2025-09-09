@@ -100,9 +100,14 @@ app.use((req,res,next) => {
 //    res.send(registeredUser);
 // });
 
+app.get("/", (req, res) => {
+  res.render("listings/home.ejs");  // if using ejs/pug
+  // or res.sendFile(path.join(__dirname, "public/index.html"));
+});
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/",userRouter);
+// 
 
 
 app.use((req, res, next) => {
@@ -113,6 +118,7 @@ app.use((err,req,res,next) => {
      res.status(statusCode).render("listings/error.ejs",{ err });
     // res.status(statusCode).send(message);
 });
+
 app.listen(8080 , () => {
     console.log("Server is running on port 8080");
 });
